@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">BookCase</string>
+    <string-array name="Books">
+        <item>City of Girls</item>
+        <item>The Nickel Boys</item>
+        <item>Fleishman Is in Trouble</item>
+        <item>On Earth We re Briefly Gorgeous</item>
+        <item>Searching for Sylvie Lee</item>
+        <item>Three Women</item>
+        <item>Inland</item>
+        <item>Trick Mirror: Reflections on Self-Delusion</item>
+        <item>How Could She: A Novel</item>
+        <item>The Wedding Party</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
