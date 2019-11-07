@@ -13,6 +13,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,12 +28,12 @@ import android.widget.ListView;
 public class BookListFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String BOOKS = "books";
+    private static final String BOOKS = "bookTitles";
 //    private static final String ARG_PARAM2 = "param2";
 
     private OnFragmentInteractionListener mListener;
 
-    String[] books;
+    ArrayList<String> books;
 
     public BookListFragment() {
         // Required empty public constructor
@@ -38,10 +41,10 @@ public class BookListFragment extends Fragment {
 
 
     // TODO: Rename and change types and number of parameters
-    public static BookListFragment newInstance(String[] books) {
+    public static BookListFragment newInstance(ArrayList<String> books) {
         BookListFragment fragment = new BookListFragment();
         Bundle args = new Bundle();
-        args.putStringArray(BOOKS, books);
+        args.putStringArrayList(BOOKS, books);
         fragment.setArguments(args);
         return fragment;
     }
@@ -50,7 +53,7 @@ public class BookListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            books = getArguments().getStringArray(BOOKS);
+            books = getArguments().getStringArrayList(BOOKS);
         }
     }
 
