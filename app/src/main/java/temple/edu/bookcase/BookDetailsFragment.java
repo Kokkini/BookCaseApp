@@ -26,17 +26,15 @@ import java.net.URL;
  * create an instance of this fragment.
  */
 public class BookDetailsFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String TITLE = "param1";
     private static final String BOOK = "book";
 
-    // TODO: Rename and change types of parameters
     private Book book;
-    TextView titleTextView;
-    TextView authorTextView;
-    TextView publishedTextView;
-    ImageView bookCover;
+    private TextView titleTextView;
+    private TextView authorTextView;
+    private TextView publishedTextView;
+    private ImageView bookCover;
 
 
     public BookDetailsFragment() {

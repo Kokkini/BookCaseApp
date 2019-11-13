@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".ViewPageFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/ViewPager"
         android:layout_width="match_parent"

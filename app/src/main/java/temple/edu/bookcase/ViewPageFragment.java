@@ -21,12 +21,10 @@ import java.util.ArrayList;
  * Use the {@link ViewPageFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ViewPageFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+public class ViewPageFragment extends Fragment implements Fetchable{
     private static final String BOOKLIST = "bookList";
 
-    // TODO: Rename and change types of parameters
+
     private static ArrayList<Book> bookList;
 
     public ViewPageFragment() {
@@ -63,5 +61,10 @@ public class ViewPageFragment extends Fragment {
         PagerAdapter pagerAdapter = new PagerAdapter(getFragmentManager(), detailArray);
         viewPager.setAdapter(pagerAdapter);
         return view;
+    }
+
+    @Override
+    public ArrayList<Book> getBooks() {
+        return bookList;
     }
 }
