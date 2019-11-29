@@ -1,23 +1,22 @@
 package temple.edu.bookcase;
 
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.os.Debug;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.InputStream;
-import java.net.URL;
 
 
 /**
@@ -35,7 +34,9 @@ public class BookDetailsFragment extends Fragment {
     private TextView authorTextView;
     private TextView publishedTextView;
     private ImageView bookCover;
+    private Button startButton;
 
+    private AudioStartInterface fragmentParent;
 
     public BookDetailsFragment() {
         // Required empty public constructor
@@ -55,6 +56,7 @@ public class BookDetailsFragment extends Fragment {
         if (getArguments() != null) {
             book = (Book) getArguments().getSerializable(BOOK);
         }
+
     }
 
     public void displayBook(Book book){
@@ -67,6 +69,7 @@ public class BookDetailsFragment extends Fragment {
         new DownloadImageTask(bookCover).execute(book.coverURL);
 //        bookCover.setImageDrawable(getImage(book.coverURL));
 //        bookCover.setImageURI(book.coverURL);
+        this.book = book;
     }
 
     @Override
@@ -74,12 +77,38 @@ public class BookDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_book_details, container, false);
-        titleTextView = view.findViewById(R.id.titleTextView);
+        titleTextView = view.findViewById(R.id.playingTitle);
         authorTextView = view.findViewById(R.id.authorTextView);
         publishedTextView = view.findViewById(R.id.publishedTextView);
         bookCover = view.findViewById(R.id.bookCover);
+        startButton = view.findViewById(R.id.startButton);
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(fragmentParent != null) {
+                    fragmentParent.startAudio(book.id);
+                }
+            }
+        });
         displayBook(book);
         return view;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof AudioStartInterface) {
+            fragmentParent = (AudioStartInterface) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement AudioStartInterface");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        fragmentParent = null;
     }
 
 //    public static Drawable getImage(String url) {
@@ -104,6 +133,10 @@ public class BookDetailsFragment extends Fragment {
             Log.e("Error", e.toString());
         }
         return mIcon11;
+    }
+
+    public interface AudioStartInterface {
+        void startAudio(int id);
     }
 
 }

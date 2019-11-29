@@ -54,7 +54,7 @@ public class ViewPageFragment extends Fragment implements Fetchable{
         View view = inflater.inflate(R.layout.fragment_view_page, container, false);
         ViewPager viewPager = view.findViewById(R.id.ViewPager);
         BookDetailsFragment[] detailArray = new BookDetailsFragment[bookList.size()];
-        Book theBook = new Book(10, "ten", "ten ten", 1010, "10101010");
+        Book theBook = new Book(10, "ten", "ten ten", 1010, "10101010", 1);
         for(int i=0; i<detailArray.length; i++){
             detailArray[i] = BookDetailsFragment.newInstance(bookList.get(i));
         }
